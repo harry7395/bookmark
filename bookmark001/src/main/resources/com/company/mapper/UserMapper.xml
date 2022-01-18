@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.company.mapper.UserMapper">
+	<select id="login" resultType="integer">
+		SELECT uno from userinfo WHERE uid = #{uid} and upass = #{upass}
+	</select>
+	
+	<insert id="join">
+		insert into userinfo(uid, upass, uemail, uname, ubirth, ugender, uzipcode, uaddress, umkt, uip) 
+		values(#{uid}, #{upass}, #{uemail}, #{uname}, #{ubirth}, #{ugender}, #{uzipcode}, #{uaddress}, #{umkt}, #{uip})
+	</insert>
+	
+	<select id="id_dup" resultType="integer">
+		SELECT uno from userinfo WHERE uid = #{uid}
+	</select>
+	
+	<select id="pass_check" resultType="integer">
+		SELECT uno from userinfo WHERE uid = #{uid} AND upass = #{upass}
+	</select>
+	
+	<select id="userInfo" resultType="UserDto">
+		SELECT * from userinfo WHERE uid = #{uid}
+	</select>
+	
+	<update id="edit">
+		update userinfo set upass=#{upass}, ubirth=#{ubirth}, uzipcode=#{uzipcode}, uaddress=#{uaddress}, umkt=#{umkt} where uno=#{uno}
+	</update>
+</mapper>
